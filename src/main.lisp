@@ -1,3 +1,29 @@
+
+
+
+;; https://github.com/joaotavora/ax.game
+;; https://borodust.org/projects/trivial-gamekit/
+
+;; https://technomancy.us/188
+;;         fennel + lua - winner of a gamejam
+
+;; https://itch.io/jam/spring-lisp-game-jam-2020
+;;         Spring Lisp Game Jam 2020
+
+;; https://shinmera.itch.io/
+;;         shimera games...
+
+
+;; https://www.reddit.com/r/Common_Lisp/comments/fyomln/running_mcclim_and_other_lisp_packages_on_windows/
+;;         pacman -S unzip git gpg curl base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-xpm-nox mingw-w64-x86_64-pcre mingw-w64-x86_64-curl mingw-w64-x86_64-gnutls mingw-w64-x86_64-iconv mingw-w64-x86_64-libgcrypt mingw-w64-x86_64-glfw
+
+;; https://www.reddit.com/r/Common_Lisp/comments/fwmp2r/list_some_beautiful_looking_graphics_applications/
+;;         https://www.xach.com/moviecharts/
+
+;; https://github.com/for-GET/know-your-http-well
+
+
+
 (cl:in-package #:gamez)
 
 
