@@ -1,8 +1,8 @@
-(asdf:defsystem #:gamez
-  :description "Game Zero - Spring Lisp Game Jam 2020 entry"
+(asdf:defsystem #:bag-of-peas
+  :description "A game jam or nothing at all"
   :author "Rodrigo Correia <https://github.com/drigoor>"
+  :version "0.0.0ervilhas"
   :depends-on (#:trivial-gamekit)
-  :pathname "src/"
   :serial t
   :components ((:file "package")
                (:file "main")))
