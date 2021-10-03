@@ -20,5 +20,8 @@ mklink /J c:\home\quicklisp\local-projects\bag-of-peas c:\home\projects\lisp\bag
 
 ## Screenshots
 
+1. added shapes
 ![01-shape](/screenshots/01-shape.png)
 
+2. add generation of asteroids
+![02-shape-asteroids](/screenshots/02-shape-asteroids.png)
