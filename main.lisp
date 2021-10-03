@@ -1,4 +1,4 @@
-(in-package #:bag-of-peas)
+(in-package :bag-of-peas)
 
 
 (defvar *canvas-width* 640)

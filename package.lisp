@@ -1,4 +1,4 @@
-(defpackage #:bag-of-peas
-  (:use #:cl
-        #:gamekit)
-  (:export #:run))
+(defpackage :bag-of-peas
+  (:use :cl
+        :gamekit)
+  (:export :run))

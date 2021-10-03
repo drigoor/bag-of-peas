@@ -1,4 +1,4 @@
-(asdf:defsystem #:bag-of-peas
+(asdf:defsystem :bag-of-peas
   :description "A game jam or nothing at all"
   :author "Rodrigo Correia <https://github.com/drigoor>"
   :version "0.0.0ervilhas"
