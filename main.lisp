@@ -107,6 +107,37 @@
         collect (vec2 x y)))
 
 
+(defun random-between (start end)
+  (+ start (random (- end start))))
+
+
+(defvar ASTEROID_NUM_POINTS 10)
+(defvar ASTEROID_RAD 15)
+(defvar ASTEROID_RAD_PLUS 4)
+(defvar ASTEROID_RAD_MINUS 6)
+
+
+(defun spawn-asteroid (scale size)
+  (let ((points nil))
+    ;; first point
+    (push (vec2 (/ ASTEROID_RAD scale) 0)
+          points)
+    ;; midle points
+    (dotimes (index (- ASTEROID_NUM_POINTS 2)) ; index will start in 1 (see 1+)
+      (let ((speed (random-between (- ASTEROID_RAD ASTEROID_RAD_MINUS)
+                                   (+ ASTEROID_RAD ASTEROID_RAD_PLUS)))
+            (direction (* (1+ index)
+                          (/ (* pi 2)
+                             ASTEROID_NUM_POINTS))))
+        (push (mult (vec2-from-speed-and-direction speed direction) size)
+              points)))
+    ;; last point
+    (push (vec2 (/ ASTEROID_RAD scale) 0)
+          points)
+    points))
+
+
+
 (defvar *player-ship* (make-shape :location (vec2 (/ *canvas-width* 2) (/ *canvas-height* 2))
                                   :rotation 0
                                   :colour *special-black*
@@ -145,31 +176,7 @@
     (draw-circle location 2 :fill-paint *red*)))
 
 
-(defun random-between (start end)
-  (+ start (random (- end start))))
 
 
-(defvar ASTEROID_NUM_POINTS 10)
-(defvar ASTEROID_RAD 15)
-(defvar ASTEROID_RAD_PLUS 4)
-(defvar ASTEROID_RAD_MINUS 6)
 
 
-(defun spawn-asteroid (scale size)
-  (let ((points nil))
-    ;; first point
-    (push (vec2 (/ ASTEROID_RAD scale) 0)
-          points)
-    ;; midle points
-    (dotimes (index (- ASTEROID_NUM_POINTS 2)) ; index will start in 1 (see 1+)
-      (let ((speed (random-between (- ASTEROID_RAD ASTEROID_RAD_MINUS)
-                                   (+ ASTEROID_RAD ASTEROID_RAD_PLUS)))
-            (direction (* (1+ index)
-                          (/ (* pi 2)
-                             ASTEROID_NUM_POINTS))))
-        (push (mult (vec2-from-speed-and-direction speed direction) size)
-              points)))
-    ;; last point
-    (push (vec2 (/ ASTEROID_RAD scale) 0)
-          points)
-    points))
