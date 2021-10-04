@@ -15,10 +15,16 @@ A game jam or nothing at all
 
 ## Current status
 
-- [x] shapes
+- [ ] shapes
+  - [x] player
+  - [x] asteroids
+  - [ ] enemys
 - [ ] movement
+  - [ ] player
+  - [ ] asteroids
+  - [ ] enemys
 - [ ] input
-- [ ] state management
+- [ ] basic state management
 - [ ] collision detection
 - [ ] particles
 - [ ] menus & high scores
