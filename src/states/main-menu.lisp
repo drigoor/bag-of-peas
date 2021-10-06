@@ -13,6 +13,8 @@
 (defmethod gk:post-initialize ((this main-menu))
   (let ((nr-of-options (length *options*)))
     (with-slots (selected) this
+      (gk:bind-button :escape :pressed
+                      #'gk:stop)
       (gk:bind-button :down :pressed
                       (lambda ()
                         (setf selected (mod (1+ selected) nr-of-options))))
@@ -28,6 +30,7 @@
 
 
 (defmethod gk:pre-destroy ((this main-menu))
+  (gk:bind-button :escape :pressed nil)
   (gk:bind-button :down :pressed nil)
   (gk:bind-button :up :pressed nil)
   (gk:bind-button :enter :pressed nil))
