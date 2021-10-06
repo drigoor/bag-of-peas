@@ -12,6 +12,10 @@ A game jam or nothing at all
 
 ![02-shape-asteroids](/screenshots/02-shape-asteroids.png)
 
+3. added simple state managnment (based on [trivial-gamekit-fistmachine](https://github.com/borodust/trivial-gamekit-fistmachine))
+
+![03-states](/screenshots/03-states.png)
+
 
 ## Current status
 
