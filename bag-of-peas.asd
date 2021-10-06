@@ -7,7 +7,9 @@
   :pathname "src/"
   :serial t
   :components ((:file "package")
+               (:file "colors")
                (:file "util")
+               (:file "shape")
                (:module "states"
                 :components ((:file "loading-screen")
                              (:file "main-menu")
