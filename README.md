@@ -23,11 +23,12 @@ A game jam or nothing at all
   - [ ] player
   - [ ] asteroids
   - [ ] enemys
-- [ ] input
-- [ ] basic state management
+- [x] basic input
+- [x] basic state management
+- [x] simple menus
 - [ ] collision detection
 - [ ] particles
-- [ ] menus & high scores
+- [ ] high scores
 - [ ] menu option to turn on/off the antialiasing (maybe with a shortcut?)
 
 
