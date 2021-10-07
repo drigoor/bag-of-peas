@@ -89,5 +89,5 @@
     (dolist (asteroid asteroids)
       (draw asteroid)))
   (gk:draw-text "Just an initial gameplay with states thing..." (gk:vec2 100 100))
-  (gk:draw-text "press `space´ to go reset shapes" (gk:vec2 100 80))
-  (gk:draw-text "press `esc´ to go back" (gk:vec2 100 60)))
+  (gk:draw-text "press space to go reset shapes" (gk:vec2 100 80))
+  (gk:draw-text "press esc to go back" (gk:vec2 100 60)))
