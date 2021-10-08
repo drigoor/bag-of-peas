@@ -5,12 +5,18 @@
   ((location :initarg :location
              :initform nil
              :accessor location)
+   (velocity :initarg :velocity
+             :initform nil ; speed -> x, direction -> y
+             :accessor velocity)
    (rotation :initarg :rotation
-             :initform nil
+             :initform 0
              :accessor rotation)
+   (rotation-speed :initarg :rotation
+                   :initform 0.07
+                   :accessor rotation-speed)
    (colour :initarg :colour
-          :initform nil
-          :accessor colour)
+           :initform *special-black*
+           :accessor colour)
    (points :initarg :points
            :initform nil
            :accessor points)))
@@ -23,10 +29,11 @@
 (defmethod print-object ((obj shape) stream)
   (print-unreadable-object (obj stream :type t)
     (with-accessors ((location location)
+                     (velocity velocity)
                      (rotation rotation)
                      (points points))
         obj
-      (format stream "location: ~a, rotation: ~a, points: ~{~a~^, ~}" location rotation points))))
+      (format stream "location: ~a, velocity: ~a, rotation: ~a, points: ~{~a~^, ~}" location velocity rotation points))))
 
 
 (defmethod draw ((shape shape))

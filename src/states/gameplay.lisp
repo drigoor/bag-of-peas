@@ -1,18 +1,15 @@
 (in-package :bag-of-peas)
 
 
-(defun create-player (&optional location rotation)
-  (make-shape :location (or location
-                            (gk:vec2 (/ (gk:viewport-width) 2)
-                                     (/ (gk:viewport-height) 2)))
-              :rotation (or rotation
-                            0)
-              :colour *special-black*
-              :points (<-vec2   20   0
-                               -20  15
-                               -10   0
-                               -20 -15
-                                20   0)))
+(defun create-player ()
+  (make-shape :location (gk:vec2 (/ (gk:viewport-width) 2)
+                                 (/ (gk:viewport-height) 2))
+              :velocity (gk:vec2 0 0)
+              :points (<-vec2  20   0
+                              -20  15
+                              -10   0
+                              -20 -15
+                               20   0)))
 
 
 (defvar ASTEROID_NUM_POINTS 10)
@@ -41,12 +38,16 @@
     points))
 
 
-(defun create-asteroid (location scale size &optional rotation color)
+(defvar ASTEROID_MAX_VEL 0.5)
+(defvar ASTEROID_MIN_VEL 0.1)
+(defvar ASTEROID_MAX_ROT 0.03)
+
+
+(defun create-asteroid (location scale size)
   (make-shape :location location
-              :rotation (or rotation
-                            (random-between 0 pi))
-              :colour (or color
-                          *special-black*)
+              :velocity (gk:vec2 (random-between ASTEROID_MIN_VEL ASTEROID_MAX_VEL)
+                                 (- (* (random 2) (* 2 ASTEROID_MAX_ROT)) ASTEROID_MAX_ROT))
+              :rotation (random-between 0 pi)
               :points (calculate-asteroid-points scale size)))
 
 
@@ -54,6 +55,46 @@
   (list (create-asteroid (gk:vec2 100 200) 1 1)
         (create-asteroid (gk:vec2 100 300) 1 2)
         (create-asteroid (gk:vec2 100 400) 1 3)))
+
+
+
+
+
+(defun wrap-location (location)
+  (let* ((x (gk:x location))
+         (y (gk:y location))
+         (screen-max-x (gk:viewport-width))
+         (screen-max-y (gk:viewport-height))
+         (new-x (cond ((>= x screen-max-x)
+                       0)
+                      ((< x 0)
+                       (1- screen-max-x))
+                      (t
+                       x)))
+         (new-y (cond ((>= y screen-max-y)
+                       0)
+                      ((< y 0)
+                       (1- screen-max-x))
+                      (t
+                       y))))
+    (gk:vec2 new-x new-y)))
+
+
+(defun get-vector-components (vector)
+  (let ((speed (gk:x vector))
+        (direction (gk:y vector)))
+    (vec2-from-speed-and-direction speed direction)))
+
+
+(defun move-point-by-velocity (shape)
+  (gk:add (location shape) (get-vector-components (velocity shape))))
+
+
+(defun move-asteroids (asteroids)
+  (dolist (asteroid asteroids)
+    (with-slots (rotation rotation-speed location) asteroid
+      ;; (incf rotation rotation-speed)
+      (setf location (wrap-location (move-point-by-velocity asteroid))))))
 
 
 (defclass gameplay ()
@@ -79,6 +120,11 @@
 (defmethod gk:pre-destroy ((this gameplay))
   (gk:bind-button :space :pressed nil)
   (gk:bind-button :escape :pressed nil))
+
+
+(defmethod gk:act ((this gameplay))
+  (with-slots (asteroids) this
+    (move-asteroids asteroids)))
 
 
 (defmethod gk:draw ((this gameplay))
