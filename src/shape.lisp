@@ -11,7 +11,7 @@
    (rotation :initarg :rotation
              :initform 0
              :accessor rotation)
-   (rotation-speed :initarg :rotation
+   (rotation-speed :initarg :rotation-speed
                    :initform 0.07
                    :accessor rotation-speed)
    (colour :initarg :colour

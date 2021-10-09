@@ -25,8 +25,9 @@
           points)
     ;; midle points
     (dotimes (index (- ASTEROID_NUM_POINTS 2)) ; index will start in 1 (see 1+)
-      (let ((speed (random-between (- ASTEROID_RAD ASTEROID_RAD_MINUS)
-                                   (+ ASTEROID_RAD ASTEROID_RAD_PLUS)))
+      (let ((speed (/ (random-between (- ASTEROID_RAD ASTEROID_RAD_MINUS)
+                                      (+ ASTEROID_RAD ASTEROID_RAD_PLUS))
+                      scale))
             (direction (* (1+ index)
                           (/ (* pi 2)
                              ASTEROID_NUM_POINTS))))
@@ -46,8 +47,9 @@
 (defun create-asteroid (location scale size)
   (make-shape :location location
               :velocity (gk:vec2 (random-between ASTEROID_MIN_VEL ASTEROID_MAX_VEL)
-                                 (- (* (random 2) (* 2 ASTEROID_MAX_ROT)) ASTEROID_MAX_ROT))
+                                 (random-between 0 (* 2 pi)))
               :rotation (random-between 0 pi)
+              :rotation-speed (- (* (random 2.0) (* 2 ASTEROID_MAX_ROT)) ASTEROID_MAX_ROT)
               :points (calculate-asteroid-points scale size)))
 
 
@@ -93,7 +95,7 @@
 (defun move-asteroids (asteroids)
   (dolist (asteroid asteroids)
     (with-slots (rotation rotation-speed location) asteroid
-      ;; (incf rotation rotation-speed)
+      (incf rotation rotation-speed)
       (setf location (wrap-location (move-point-by-velocity asteroid))))))
 
 

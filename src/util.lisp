@@ -2,7 +2,7 @@
 
 
 (defun random-between (start end)
-  (+ start (random (- end start))))
+  (+ start (random (+ 1 (- end start)))))
 
 
 (defun <-vec2 (&rest args)
