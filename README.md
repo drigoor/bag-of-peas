@@ -25,7 +25,7 @@ A game jam or nothing at all
   - [ ] enemys
 - [ ] movement
   - [ ] player
-  - [ ] asteroids
+  - [x] asteroids
   - [ ] enemys
 - [x] basic input
 - [x] basic state management
